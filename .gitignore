@@ -1,13 +1,10 @@
-# Dataset de Inside Airbnb: pesa ~18 MB, se descarga aparte
 listings.csv.gz
 data/
-
-# Python
+graficos/
+salida_consola.txt
 __pycache__/
 *.pyc
 .venv/
 venv/
-
-# Notebooks y archivos temporales de Office
 .ipynb_checkpoints/
 ~$*.docx
