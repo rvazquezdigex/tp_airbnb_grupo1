@@ -1,0 +1,38 @@
+import os
+import unittest
+
+import pandas as pd
+
+from funciones_airbnb import RUTA_DATOS, cargar_datos, convertir_precio, limpiar
+
+
+class TestDatos(unittest.TestCase):
+
+    def test_existe_el_archivo(self):
+        self.assertTrue(os.path.exists(RUTA_DATOS))
+
+    def test_carga_el_csv(self):
+        df = cargar_datos()
+        self.assertGreater(len(df), 0)
+        for columna in ["price", "accommodates", "bedrooms", "beds", "minimum_nights"]:
+            self.assertIn(columna, df.columns)
+
+    def test_convertir_precio(self):
+        precios = convertir_precio(pd.Series(["$106,393.00", "$1,000.00", None]))
+        self.assertEqual(precios[0], 106393.0)
+        self.assertEqual(precios[1], 1000.0)
+        self.assertTrue(pd.isna(precios[2]))
+
+    def test_limpiar(self):
+        df = pd.DataFrame({
+            "accommodates": [2, 0, 3, None, 4, 2],
+            "price": ["$100.00", "$200.00", "$0.00", "$300.00", "$400.00", "$150.00"],
+        })
+        datos = limpiar(df, ["accommodates"], {"accommodates": 1})
+        self.assertFalse(datos.isna().any().any())
+        self.assertTrue((datos["price"] > 0).all())
+        self.assertTrue((datos["accommodates"] >= 1).all())
+
+
+if __name__ == "__main__":
+    unittest.main()
