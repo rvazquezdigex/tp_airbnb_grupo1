@@ -1,1 +1,1 @@
-"""TP Airbnb - Grupo 1."""
+"""TP Airbnb grupo 1"""

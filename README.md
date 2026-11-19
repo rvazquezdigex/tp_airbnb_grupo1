@@ -8,10 +8,11 @@ P4:  k-NN para regresion, precio segun alojamientos parecidos
 
 ## Estructura
 
-    data/raw/            dataset original (no se sube a git, se descarga con el script)
+    data/raw/            dataset original de Inside Airbnb (incluido en el repo)
     docs/diagrama.html   diagrama del programa: flujo de datos, ETL, modulos y reportes
     reports/figures/     graficos que genera el programa
-    scripts/             descarga de datos
+    scripts/             descarga de datos (respaldo si falta el archivo)
+    setup.bat            crea el entorno virtual e instala dependencias
     src/                 codigo
         config.py        rutas del proyecto
         etl.py           extraccion y limpieza de datos
@@ -23,18 +24,18 @@ P4:  k-NN para regresion, precio segun alojamientos parecidos
 
 ## Instrucciones de ejecución
 
-1. Crear el entorno virtual e instalar dependencias (desde la carpeta del proyecto):
-   py -m venv .venv
-   .venv\Scripts\activate
-   pip install -r requirements.txt
+Todos los comandos se corren desde la carpeta del proyecto.
 
-2. Descargar los datos (quedan en data\raw\listings.csv.gz):
-   scripts\descargar_datos.bat
+1. Crear el entorno virtual e instalar dependencias:
+   setup.bat
+
+2. Activar el entorno:
+   .venv\Scripts\activate
 
 3. Correr los tests:
    python -m unittest discover tests
 
-4. Correr los dos proyectos (con el entorno activado):
+4. Correr los dos proyectos:
    python -m src.main
    Guarda los gráficos en reports\figures.
 

@@ -40,7 +40,7 @@
       "id": "csv",
       "type": "database",
       "label": "listings.csv.gz",
-      "sublabel": "data/raw",
+      "sublabel": "data/raw (en git)",
       "stage": 0,
       "row": 2,
       "tag": "crudo"
@@ -118,7 +118,7 @@
       "id": "descarga",
       "from": "insideairbnb",
       "to": "csv",
-      "label": "descargar_datos.bat",
+      "label": "descargar_datos.bat (respaldo)",
       "variant": "dashed",
       "labelDy": 24
     },

@@ -1,4 +1,4 @@
-"""Proyecto 1: regresion lineal simple del precio por noche segun la cantidad de huespedes."""
+"""Proyecto 1: regresion lineal simple del precio por noche segun la cantidad de huespedes"""
 import pandas as pd
 from sklearn.dummy import DummyRegressor
 from sklearn.linear_model import LinearRegression
@@ -9,7 +9,7 @@ from src.reportes import guardar_grafico, mostrar_metricas
 
 
 def correr_p1():
-    """Entrena la regresion, la compara con el modelo base, estima un caso nuevo y guarda el grafico."""
+    """entrena la regresion la compara con el modelo base estima un caso nuevo y guarda el grafiico"""
     print("Proyecto 1 - Regresion lineal")
 
     df = extraer_datos()
@@ -24,7 +24,7 @@ def correr_p1():
     print("Pendiente:", round(modelo.coef_[0]))
     print("Intercepto:", round(modelo.intercept_))
 
-    # modelo base para comparar, predice siempre el promedio
+    # el modelo base predice siempre el promedio sirve para comparar
     base = DummyRegressor()
     base.fit(X_train, y_train)
 
