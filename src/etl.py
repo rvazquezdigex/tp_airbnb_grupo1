@@ -11,7 +11,7 @@ def extraer_datos():
     return df
 
 
-# saca NaN y pasa precio a numerico
+# convierte a numerico y usa nan si hay error
 def convertir_precio(precio):
     # viene como "$106,393.00"
     precio = precio.astype(str).str.replace("$", "").str.replace(",", "")
