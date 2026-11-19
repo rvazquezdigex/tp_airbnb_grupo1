@@ -1,19 +1,19 @@
-import os
-
-import matplotlib.pyplot as plt
+"""Proyecto 1: regresion lineal simple del precio por noche segun la cantidad de huespedes."""
 import pandas as pd
 from sklearn.dummy import DummyRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
-from funciones_airbnb import cargar_datos, limpiar, mostrar_metricas
+from src.etl import extraer_datos, transformar_datos
+from src.reportes import guardar_grafico, mostrar_metricas
 
 
 def correr_p1():
+    """Entrena la regresion, la compara con el modelo base, estima un caso nuevo y guarda el grafico."""
     print("Proyecto 1 - Regresion lineal")
 
-    df = cargar_datos()
-    datos = limpiar(df, ["accommodates"], {"accommodates": 1})
+    df = extraer_datos()
+    datos = transformar_datos(df, ["accommodates"], {"accommodates": 1})
 
     X = datos[["accommodates"]]
     y = datos["price"]
@@ -35,14 +35,9 @@ def correr_p1():
     nuevo = pd.DataFrame({"accommodates": [4]})
     print("Precio estimado para 4 huespedes:", round(modelo.predict(nuevo)[0]))
 
-    os.makedirs("graficos", exist_ok=True)
-    plt.scatter(X_test["accommodates"], y_test, s=5)
-    plt.plot(X_test["accommodates"], pred, color="red")
-    plt.xlabel("Huespedes")
-    plt.ylabel("Precio por noche")
-    plt.title("Precio vs huespedes")
-    plt.savefig("graficos/p1_precio_vs_huespedes.png")
-    plt.close()
+    guardar_grafico(X_test["accommodates"], y_test, X_test["accommodates"], pred,
+                    "Huespedes", "Precio por noche", "Precio vs huespedes",
+                    "p1_precio_vs_huespedes.png")
 
 
 if __name__ == "__main__":

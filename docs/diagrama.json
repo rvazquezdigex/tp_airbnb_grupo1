@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "TP Airbnb Grupo 1 - Flujo de datos",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1080,
+      520
+    ]
+  },
+  "stages": [
+    {
+      "label": "Fuente"
+    },
+    {
+      "label": "Extraer (E)"
+    },
+    {
+      "label": "Transformar (T)"
+    },
+    {
+      "label": "Carga (L) y modelos"
+    },
+    {
+      "label": "Reportes"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "insideairbnb",
+      "type": "external",
+      "label": "Inside Airbnb",
+      "sublabel": "CABA 2026-09-23",
+      "stage": 0,
+      "row": 0,
+      "tag": "web"
+    },
+    {
+      "id": "csv",
+      "type": "database",
+      "label": "listings.csv.gz",
+      "sublabel": "data/raw",
+      "stage": 0,
+      "row": 2,
+      "tag": "crudo"
+    },
+    {
+      "id": "extraer",
+      "type": "backend",
+      "label": "extraer_datos()",
+      "sublabel": "src/etl.py",
+      "stage": 1,
+      "row": 1,
+      "tag": "pandas"
+    },
+    {
+      "id": "transformar",
+      "type": "backend",
+      "label": "transformar_datos()",
+      "sublabel": "src/etl.py",
+      "stage": 2,
+      "row": 1,
+      "tag": "limpieza"
+    },
+    {
+      "id": "p1",
+      "type": "backend",
+      "label": "correr_p1()",
+      "sublabel": "LinearRegression",
+      "stage": 3,
+      "row": 0,
+      "tag": "P1"
+    },
+    {
+      "id": "p4",
+      "type": "backend",
+      "label": "correr_p4()",
+      "sublabel": "StandardScaler + k-NN",
+      "stage": 3,
+      "row": 2,
+      "tag": "P4"
+    },
+    {
+      "id": "png-p1",
+      "type": "database",
+      "label": "p1_precio_vs_huespedes.png",
+      "sublabel": "guardar_grafico()",
+      "stage": 4,
+      "row": 0,
+      "tag": "reports/figures",
+      "width": 176,
+      "yOffset": -7
+    },
+    {
+      "id": "consola",
+      "type": "frontend",
+      "label": "Consola",
+      "sublabel": "mostrar_metricas()",
+      "stage": 4,
+      "row": 1,
+      "tag": "texto"
+    },
+    {
+      "id": "png-p4",
+      "type": "database",
+      "label": "p4_reales_vs_predichos.png",
+      "sublabel": "guardar_grafico()",
+      "stage": 4,
+      "row": 2,
+      "tag": "reports/figures",
+      "width": 176,
+      "yOffset": 7
+    }
+  ],
+  "flows": [
+    {
+      "id": "descarga",
+      "from": "insideairbnb",
+      "to": "csv",
+      "label": "descargar_datos.bat",
+      "variant": "dashed",
+      "labelDy": 24
+    },
+    {
+      "id": "lectura",
+      "from": "csv",
+      "to": "extraer",
+      "label": "read_csv",
+      "variant": "emphasis"
+    },
+    {
+      "id": "crudo",
+      "from": "extraer",
+      "to": "transformar",
+      "label": "29.753 filas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "limpio-p1",
+      "from": "transformar",
+      "to": "p1",
+      "label": "27.086 filas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "limpio-p4",
+      "from": "transformar",
+      "to": "p4",
+      "label": "26.599 filas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "grafico-p1",
+      "from": "p1",
+      "to": "png-p1",
+      "label": "PNG"
+    },
+    {
+      "id": "metricas-p1",
+      "from": "p1",
+      "to": "consola",
+      "label": "MAE RMSE R2"
+    },
+    {
+      "id": "metricas-p4",
+      "from": "p4",
+      "to": "consola",
+      "label": "MAE RMSE R2"
+    },
+    {
+      "id": "grafico-p4",
+      "from": "p4",
+      "to": "png-p4",
+      "label": "PNG",
+      "labelDy": 14
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Ejecucion: python -m src.main",
+      "items": [
+        "main() llama a correr_p1() y despues a correr_p4()",
+        "Cada proyecto: extraer, transformar, split 75/25 (random_state=42), entrenar, evaluar y graficar",
+        "DummyRegressor (predice el promedio) es la referencia para comparar cada modelo"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "ETL en src/etl.py",
+      "items": [
+        "E: extraer_datos() lee el CSV crudo de data/raw",
+        "T: convertir_precio() pasa el texto a numero; transformar_datos() saca nulos, valores imposibles y el 1% de precios extremos de cada lado",
+        "L: el DataFrame limpio se carga en memoria en los modelos, no se guarda en disco"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Modulos de src/",
+      "items": [
+        "config.py: rutas del proyecto; etl.py: datos; reportes.py: metricas y graficos",
+        "p1_regresion_huespedes.py y p4_knn_alojamientos_parecidos.py: un proyecto cada uno",
+        "tests/test_datos.py prueba el ETL con unittest"
+      ]
+    }
+  ]
+}

@@ -1,24 +1,24 @@
-import os
-
-import matplotlib.pyplot as plt
+"""Proyecto 4: k-NN para estimar el precio por noche a partir de alojamientos parecidos."""
 import pandas as pd
 from sklearn.dummy import DummyRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.preprocessing import StandardScaler
 
-from funciones_airbnb import cargar_datos, limpiar, mostrar_metricas
+from src.etl import extraer_datos, transformar_datos
+from src.reportes import guardar_grafico, mostrar_metricas
 
 COLUMNAS = ["accommodates", "bedrooms", "beds", "minimum_nights"]
 
 
 def correr_p4():
+    """Entrena k-NN con k=5, lo compara con el modelo base, muestra los vecinos de un caso nuevo y guarda el grafico."""
     print("Proyecto 4 - k-NN")
 
-    df = cargar_datos()
+    df = extraer_datos()
     # bedrooms puede ser 0 (monoambiente)
     minimos = {"accommodates": 1, "bedrooms": 0, "beds": 1, "minimum_nights": 1}
-    datos = limpiar(df, COLUMNAS, minimos)
+    datos = transformar_datos(df, COLUMNAS, minimos)
 
     X = datos[COLUMNAS]
     y = datos["price"]
@@ -50,14 +50,9 @@ def correr_p4():
     print("Vecinos:")
     print(vecinos)
 
-    os.makedirs("graficos", exist_ok=True)
-    plt.scatter(y_test, pred, s=5)
-    plt.plot([0, y_test.max()], [0, y_test.max()], color="red")
-    plt.xlabel("Precio real")
-    plt.ylabel("Precio predicho")
-    plt.title("Real vs predicho (k-NN)")
-    plt.savefig("graficos/p4_reales_vs_predichos.png")
-    plt.close()
+    guardar_grafico(y_test, pred, [0, y_test.max()], [0, y_test.max()],
+                    "Precio real", "Precio predicho", "Real vs predicho (k-NN)",
+                    "p4_reales_vs_predichos.png")
 
 
 if __name__ == "__main__":
