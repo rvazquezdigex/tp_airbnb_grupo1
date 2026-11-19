@@ -2,4 +2,4 @@
 from pathlib import Path
 
 RUTA_DATOS = Path("data/raw/listings.csv.gz")
-CARPETA_GRAFICOS = Path("reports/figures")
+CARPETA_GRAFICOS = Path("reportes/imagenes")

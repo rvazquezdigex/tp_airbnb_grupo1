@@ -88,7 +88,7 @@
       "sublabel": "guardar_grafico()",
       "stage": 4,
       "row": 0,
-      "tag": "reports/figures",
+      "tag": "reportes/imagenes",
       "width": 176,
       "yOffset": -7
     },
@@ -108,7 +108,7 @@
       "sublabel": "guardar_grafico()",
       "stage": 4,
       "row": 2,
-      "tag": "reports/figures",
+      "tag": "reportes/imagenes",
       "width": 176,
       "yOffset": 7
     }

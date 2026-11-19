@@ -10,7 +10,7 @@ P4:  k-NN para regresion, precio segun alojamientos parecidos
 
     data/raw/            dataset original de Inside Airbnb (incluido en el repo)
     docs/diagrama.html   diagrama del programa: flujo de datos, ETL, modulos y reportes
-    reports/figures/     graficos que genera el programa
+    reportes/imagenes/   graficos que genera el programa
     scripts/             descarga de datos (respaldo si falta el archivo)
     setup.bat            crea el entorno virtual e instala dependencias
     src/                 codigo
@@ -37,7 +37,7 @@ Todos los comandos se corren desde la carpeta del proyecto.
 
 4. Correr los dos proyectos:
    python -m src.main
-   Guarda los gráficos en reports\figures.
+   Guarda los gráficos en reportes\imagenes.
 
 
 

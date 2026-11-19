@@ -1,4 +1,4 @@
-# metricas por consola y graficos en reports/figures
+# metricas por consola y graficos en reportes/imagenes
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
