@@ -12,7 +12,7 @@ def extraer_datos():
 
 
 def convertir_precio(precio):
-    """pasa el precio de texto a numero, lo que no se puede convertir queda NaN"""
+    """pasa el precio de texto a numero y lo que no se puede convertir queda NaN"""
     # viene como texto tipo "$106,393.00" asi que hay que limpiarlo
     precio = precio.astype(str).str.replace("$", "").str.replace(",", "")
     return pd.to_numeric(precio, errors="coerce")
