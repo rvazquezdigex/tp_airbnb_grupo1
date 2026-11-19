@@ -1,4 +1,4 @@
-"""Rutas del proyecto. Son relativas a la carpeta raiz asi que hay que correr todo desde ahi"""
+# rutas relativas a la raiz del proyecto
 from pathlib import Path
 
 RUTA_DATOS = Path("data/raw/listings.csv.gz")

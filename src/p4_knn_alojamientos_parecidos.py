@@ -1,4 +1,4 @@
-"""Proyecto 4: k-NN para estimar el precio por noche a partir de alojamientos pareciddos"""
+# proyecto 4: knn estima precio con alojamientos parecidos
 import pandas as pd
 from sklearn.dummy import DummyRegressor
 from sklearn.model_selection import train_test_split
@@ -11,12 +11,12 @@ from src.reportes import guardar_grafico, mostrar_metricas
 COLUMNAS = ["accommodates", "bedrooms", "beds", "minimum_nights"]
 
 
+# entrena knn k=5 compara con base muestra vecinos y grafica
 def correr_p4():
-    """entrena knn con k=5 lo compara con el modelo base muestra los vecinos de un caso nuevo y guarda el grafico"""
     print("Proyecto 4 - k-NN")
 
     df = extraer_datos()
-    # `bedrooms` puede ser 0 si es monoambientte
+    # `bedrooms` 0 es monoambientte
     minimos = {"accommodates": 1, "bedrooms": 0, "beds": 1, "minimum_nights": 1}
     datos = transformar_datos(df, COLUMNAS, minimos)
 
@@ -24,7 +24,7 @@ def correr_p4():
     y = datos["price"]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
-    # escalamos porqe knn usa distancias y sino `minimum_nights` pesa mucho mas
+    # escalar porqe knn usa distancias
     escalador = StandardScaler()
     X_train_esc = escalador.fit_transform(X_train)
     X_test_esc = escalador.transform(X_test)

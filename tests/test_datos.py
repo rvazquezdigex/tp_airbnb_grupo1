@@ -1,4 +1,4 @@
-"""Tests basicos del ETL. Se corren desde la carpeta raiz con: python -m unittest discover tests"""
+# tests del etl correr desde la raiz con: python -m unittest discover tests
 import unittest
 
 import pandas as pd
