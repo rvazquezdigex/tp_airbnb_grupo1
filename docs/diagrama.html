@@ -5542,41 +5542,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
     <!-- Info Cards -->
     <div class="cards">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-dot emerald"></div>
-          <h3>Ejecucion: python -m src.main</h3>
-        </div>
-        <ul>
-          <li>&bull; main() llama a correr_p1() y despues a correr_p4()</li>
-          <li>&bull; Cada proyecto: extraer, transformar, split 75/25 (random_state=42), entrenar, evaluar y graficar</li>
-          <li>&bull; DummyRegressor (predice el promedio) es la referencia para comparar cada modelo</li>
-        </ul>
-      </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div class="card-dot orange"></div>
-          <h3>ETL en src/etl.py</h3>
-        </div>
-        <ul>
-          <li>&bull; E: extraer_datos() lee el CSV crudo de data/raw</li>
-          <li>&bull; T: convertir_precio() pasa el texto a numero; transformar_datos() saca nulos, valores imposibles y el 1% de precios extremos de cada lado</li>
-          <li>&bull; L: el DataFrame limpio se carga en memoria en los modelos, no se guarda en disco</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <div class="card-dot rose"></div>
-          <h3>Modulos de src/</h3>
-        </div>
-        <ul>
-          <li>&bull; config.py: rutas del proyecto; etl.py: datos; reportes.py: metricas y graficos</li>
-          <li>&bull; p1_regresion_huespedes.py y p4_knn_alojamientos_parecidos.py: un proyecto cada uno</li>
-          <li>&bull; tests/test_datos.py prueba el ETL con unittest</li>
-        </ul>
-      </div>
     </div>
 
   </div>

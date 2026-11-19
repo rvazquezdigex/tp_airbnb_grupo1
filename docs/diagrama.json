@@ -175,34 +175,5 @@
       "label": "PNG",
       "labelDy": 14
     }
-  ],
-  "cards": [
-    {
-      "dot": "emerald",
-      "title": "Ejecucion: python -m src.main",
-      "items": [
-        "main() llama a correr_p1() y despues a correr_p4()",
-        "Cada proyecto: extraer, transformar, split 75/25 (random_state=42), entrenar, evaluar y graficar",
-        "DummyRegressor (predice el promedio) es la referencia para comparar cada modelo"
-      ]
-    },
-    {
-      "dot": "orange",
-      "title": "ETL en src/etl.py",
-      "items": [
-        "E: extraer_datos() lee el CSV crudo de data/raw",
-        "T: convertir_precio() pasa el texto a numero; transformar_datos() saca nulos, valores imposibles y el 1% de precios extremos de cada lado",
-        "L: el DataFrame limpio se carga en memoria en los modelos, no se guarda en disco"
-      ]
-    },
-    {
-      "dot": "rose",
-      "title": "Modulos de src/",
-      "items": [
-        "config.py: rutas del proyecto; etl.py: datos; reportes.py: metricas y graficos",
-        "p1_regresion_huespedes.py y p4_knn_alojamientos_parecidos.py: un proyecto cada uno",
-        "tests/test_datos.py prueba el ETL con unittest"
-      ]
-    }
   ]
 }
